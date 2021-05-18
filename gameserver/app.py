@@ -26,7 +26,7 @@ def create_app():
     return score()
 
   @app.route("/delete",methods=['POST'])
-  def input():
+  def delete():
     app.database.execute("delete from scoreboard where id='jc';")
 
     return score()
