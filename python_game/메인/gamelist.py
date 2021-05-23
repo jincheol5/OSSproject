@@ -4,7 +4,7 @@ import pygame
 from settings import *
 from sprites import *
 
-class Start:
+class GameList:
     def __init__(self):
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.clock = pygame.time.Clock()
@@ -18,16 +18,14 @@ class Start:
         self.pointer.add(self.mousePointer)
 
         #텍스트
-        self.text = Text(WIDTH/2,100, "미니게임 오락실", 40, BLACK, MOVIE)
+        self.text = Text(WIDTH/2,100, "게임 리스트", 40, BLACK, MOVIE)
         self.startButtonText = Text(WIDTH/2, HEIGHT*4/5, "S T A R T", 40, BLACK, MOVIE)
         self.text_group = pygame.sprite.Group()
         self.text_group.add(self.text)
         self.text_group.add(self.startButtonText)
 
         #이미지
-        self.image = Image(WIDTH/2, HEIGHT/2-50, WIDTH/2, HEIGHT/2-30, BACKGROUND)
         self.image_group = pygame.sprite.Group()
-        self.image_group.add(self.image)
 
         #버튼
         self.startButton = Button(WIDTH/2, HEIGHT/8, WIDTH/2, HEIGHT*4/5, LIGHTGRAY)
@@ -68,14 +66,13 @@ class Start:
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if( self.startButton.button_clicked() ):
-                    self.playing = False
-                    self.returnNum = 2
+                    pass
                 elif( self.exitButton.button_clicked() ):
                     self.playing = False
                     self.returnNum = 0
                 elif( self.goBackButton.button_clicked() ):
                     self.playing = False
-                    self.returnNum = 0
+                    self.returnNum = 2
                 #mouse = pygame.mouse.get_pos()
                 #if self.button.pressed(mouse):   #Button's pressed method is called
                 #   print ('button hit')

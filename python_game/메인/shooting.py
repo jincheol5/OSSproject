@@ -285,6 +285,3 @@ while SB == 0:
 # 5. 게임 종료
 pygame.quit()
 
-
-
-cddd
