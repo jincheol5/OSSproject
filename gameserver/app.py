@@ -13,24 +13,22 @@ def create_app():
   
   #점수들을 내림차순으로 보여주는 함수 
   def showscore():
-    sql="SELECT * FROM scoreboard ORDER BY score DESC;"
+    sql="SELECT name,score FROM board ORDER BY score DESC limit 10;"
     result=app.database.execute(sql)
-    row=result.fetchall() 
-    return jsonify(str(row)) 
+    row=result.fetchall()
+    row=str(row).strip('[]') 
+    return jsonify(row) 
 
-  #데이터베이스 테이블의 행을 삭제하는 함수   
-  def delete(re_id):
-    sql="delete from scoreboard where id='%s';"%(re_id)
-    app.database.execute(sql)
+  
 
 
   #값을 받아서 db에 추가 후 table을 보여주는 기능 
   @app.route("/input",methods=['POST'])
   def input():
     #post 는 form 형태로 data 받는다 
-    re_id=request.form['id']
+    re_name=request.form['name']
     re_score=request.form['score']
-    sql="insert into scoreboard value('%s',%d);"%(re_id,int(re_score))
+    sql="insert into board value(NULL,'%s',%d);"%(re_name,int(re_score))
     app.database.execute(sql)
     
     
