@@ -46,7 +46,7 @@ class Image(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image,(round(width), round(height))) #이미지 사이즈 변경
         self.rect = self.image.get_rect()
         self.rect.center = [pos_x, pos_y] 
-       
+    
 class Sound:
     def __init__(self, sound_name):
         self.sound_dir = os.path.join(sound_dir, sound_name)
@@ -85,6 +85,6 @@ class Button(pygame.sprite.Sprite):
         mouse = pygame.mouse.get_pos()
         if self.rect.left <= mouse[0] <=self.rect.right and self.rect.top <= mouse[1] <= self.rect.bottom :
             self.image.fill(GRAY)
-          
+        
         else:
             self.image.fill(LIGHTGRAY)

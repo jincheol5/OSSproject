@@ -1,8 +1,8 @@
 import requests
 import json
 import re #문자열에서 숫자 추출을 위한 라이브러리 
+from config import url
 
-url="http://192.168.55.138:5010/input"
 
 def makeboard(r):
   #문자열에서 불필요한 요소들 제거

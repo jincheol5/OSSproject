@@ -6,6 +6,7 @@ from settings import *
 from start import *
 from login import *
 from gamelist import *
+from board import *
 
 
 
@@ -47,6 +48,11 @@ def main():
         #게임4
         elif running == 7:  
             pass
+        #점수판
+        elif running == 8:
+            b = Board()
+            running = b.new()
+            del(b)
 
     pygame.quit()
     sys.exit()
