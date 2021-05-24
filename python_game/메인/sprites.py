@@ -17,14 +17,26 @@ class Text(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (pos_x, pos_y)
 
+        self.text = text
         self.color = color
+        self.baseColor = color
         self.pos_x = pos_x
         self.pos_y = pos_y
         
     def text_update(self, text):
-        self.image = self.font.render(text, True, self.color)
+        self.text = text
+        self.image = self.font.render(self.text, True, self.color)
         self.rect = self.image.get_rect()
         self.rect.center = (self.pos_x, self.pos_y)
+
+    def color_update(self, color):
+        mouse = pygame.mouse.get_pos()
+        if self.rect.left <= mouse[0] <=self.rect.right and self.rect.top <= mouse[1] <= self.rect.bottom :
+            self.color = color
+            self.image = self.font.render(self.text, True, self.color)
+        else :
+            self.color = self.baseColor
+            self.image = self.font.render(self.text, True, self.color)
 
 class Image(pygame.sprite.Sprite):
     def __init__(self, width, height, pos_x, pos_y, image_name):

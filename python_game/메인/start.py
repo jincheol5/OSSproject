@@ -18,7 +18,7 @@ class Start:
         self.pointer.add(self.mousePointer)
 
         #텍스트
-        self.text = Text(WIDTH/2,100, "미니게임 오락실", 40, BLACK, MOVIE)
+        self.text = Text(WIDTH/2,100, "미니게임 오락실", 40, BLUE, MOVIE)
         self.startButtonText = Text(WIDTH/2, HEIGHT*4/5, "S T A R T", 40, BLACK, MOVIE)
         self.text_group = pygame.sprite.Group()
         self.text_group.add(self.text)
@@ -86,6 +86,7 @@ class Start:
 
         #업데이트
         self.pointer.update()
+        self.startButtonText.color_update(RED)
         self.button_group.update()
 
         pass
