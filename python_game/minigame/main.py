@@ -1,13 +1,14 @@
 import pygame
 import sys
-import os
 
 from settings import *
 from start import *
 from login import *
 from gamelist import *
-from board import *
 
+from shooting import *
+from cannon import *
+from rhythm import *
 
 
 def main():
@@ -18,6 +19,8 @@ def main():
     ID = ''
     SCORE = {1:0, 2:0, 3:0, 4:0}
     running = 1
+    BGM = Sound(HAPPY).sound
+    BGM.play()
 
     while running:
         #시작화면
@@ -37,22 +40,29 @@ def main():
             running = gl.new()
             del(gl)
         #게임1
-        elif running == 4:  
-            pass
+        elif running == 4:
+            BGM.stop()
+            game = Shooting()
+            running = game.new()
+            del(game)
+            BGM.play()
         #게임2
-        elif running == 5:  
-            pass
+        elif running == 5: 
+            BGM.stop()
+            game = Cannon()
+            running = game.new()
+            del(game)
+            BGM.play()
         #게임3
         elif running == 6:  
-            pass
+            BGM.stop()
+            game = Rhythm()
+            running = game.new()
+            del(game)
+            BGM.play()
         #게임4
         elif running == 7:  
             pass
-        #점수판
-        elif running == 8:
-            b = Board()
-            running = b.new()
-            del(b)
 
     pygame.quit()
     sys.exit()

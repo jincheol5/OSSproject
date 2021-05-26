@@ -3,8 +3,8 @@ import pygame
 
 #base properties
 TITLE = "MINI GAME"
-WIDTH = 550
-HEIGHT = 650
+WIDTH = 552
+HEIGHT = 640
 FPS = 60
 
 #ID
@@ -21,14 +21,25 @@ BACKGROUND = 'background.png'
 POINTER_1 = 'pointer_1.png'
 POINTER_2 = 'pointer_2.png'
 
+#shooting
+SPACE = 'space.jpg'
+SPACESHIP = 'spaceship.png'
 BULLET = 'bullet.png'
 JET = 'jet.png'
+JET_2 = 'jet_2.png'
 METEOR = 'meteor.png'
+
+#cannon
+CANNON = 'cannon.png'
 
 #Sound
 BUTTON_1 = 'button_1.wav'
 BUTTON_2 = 'button_2.wav'
 BUTTON_3 = 'button_3.wav'
+EXPLODE = 'explode.wav'
+HAPPY = 'happy.mp3'
+INTRO = 'intro.wav'
+MAIN = 'main.wav'
 
 #define colors
 WHITE = (255, 255, 255)
@@ -40,5 +51,4 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255 ,255 ,0)
 BROWN = (111, 109, 81)
-SKY_BLUE=(135,206,235)
-PURPLE=(128,0,128)
+

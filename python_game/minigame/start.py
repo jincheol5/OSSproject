@@ -19,7 +19,7 @@ class Start:
 
         #텍스트
         self.text = Text(WIDTH/2,100, "미니게임 오락실", 40, BLUE, MOVIE)
-        self.startButtonText = Text(WIDTH/2, HEIGHT*4/5, "S T A R T", 40, BLACK, MOVIE)
+        self.startButtonText = Text(WIDTH/2, HEIGHT*4/5, "S T A R T", 40, WHITE, MOVIE)
         self.text_group = pygame.sprite.Group()
         self.text_group.add(self.text)
         self.text_group.add(self.startButtonText)
@@ -30,7 +30,7 @@ class Start:
         self.image_group.add(self.image)
 
         #버튼
-        self.startButton = Button(WIDTH/2, HEIGHT/8, WIDTH/2, HEIGHT*4/5, LIGHTGRAY)
+        self.startButton = Button(WIDTH/2, HEIGHT/8, WIDTH/2, HEIGHT*4/5, BLACK)
         self.exitButton = Button(50, 50, WIDTH-50, 50, LIGHTGRAY)
         self.goBackButton = Button(50, 50, 50, 50, LIGHTGRAY)
         self.button_group = pygame.sprite.Group()
@@ -86,7 +86,6 @@ class Start:
 
         #업데이트
         self.pointer.update()
-        self.startButtonText.color_update(RED)
         self.button_group.update()
 
         pass
