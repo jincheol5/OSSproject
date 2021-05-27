@@ -38,8 +38,8 @@ class Board:
         #입력할 값 
         datas={
           
-          'name':'jjm',
-          'score':1234560
+          'name':ID,
+          'score':SCORE
           
         }
 

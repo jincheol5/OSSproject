@@ -13,7 +13,7 @@ def create_app():
   
   #점수들을 내림차순으로 보여주는 함수 
   def showscore():
-    sql="SELECT name,score FROM board ORDER BY score DESC limit 10;"
+    sql="SELECT name,score FROM board_1 ORDER BY score DESC limit 10;"
     result=app.database.execute(sql)
     row=result.fetchall()
     row=str(row).strip('[]') 
@@ -28,7 +28,7 @@ def create_app():
     #post 는 form 형태로 data 받는다 
     re_name=request.form['name']
     re_score=request.form['score']
-    sql="insert into board value(NULL,'%s',%d);"%(re_name,int(re_score))
+    sql="insert into board_1 value(NULL,'%s',%d);"%(re_name,int(re_score))
     app.database.execute(sql)
     
     
