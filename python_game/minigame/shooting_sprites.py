@@ -35,10 +35,10 @@ class Player(pygame.sprite.Sprite):
             self.rect.top = HEIGHT/2
         if self.rect.bottom > HEIGHT :
             self.rect.bottom = HEIGHT
-        if self.rect.left < self.width/2 :
-            self.rect.left = self.width/2
-        if self.rect.right > WIDTH - self.width/2:
-            self.rect.right = WIDTH - self.width/2
+        if self.rect.left < 0 :
+            self.rect.left = 0
+        if self.rect.right > WIDTH:
+            self.rect.right = WIDTH
 
         self.mask = pygame.mask.from_surface(self.image) #jet mask
 

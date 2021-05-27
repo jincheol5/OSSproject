@@ -15,11 +15,13 @@ class Board:
     
     
     
-    def __init__(self):
+    def __init__(self, NUMBER, ID, SCORE):
         #######################################
         #서버 db 불러오는 부분 
-    
-        
+
+        # NUMBER (슈팅 1, 캐논 2, 리듬 3, 뱀 4)
+        # ID
+        # SCORE
 
         def makeboard(r):
           #문자열에서 불필요한 요소들 제거
@@ -171,21 +173,14 @@ class Board:
                 if self.playing:
                     self.playing = False
                     self.returnNum = 0
-            #입력
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_z:
-                    pass
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if( self.startButton.button_clicked() ):
-                    self.playing = False
-                    self.returnNum = 2
-                elif( self.exitButton.button_clicked() ):
+                if( self.exitButton.button_clicked() ):
                     self.playing = False
                     self.returnNum = 0
                 elif( self.goBackButton.button_clicked() ):
                     self.playing = False
-                    self.returnNum = 0
+                    self.returnNum = 3
                 
 
     def update(self):

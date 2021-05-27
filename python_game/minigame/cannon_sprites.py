@@ -31,17 +31,6 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y
 
-        #객체가 이동 가능 구역을 넘어 갔을 시
-        if self.rect.top < HEIGHT/2 :
-            self.rect.top = HEIGHT/2
-        if self.rect.bottom > HEIGHT :
-            self.rect.bottom = HEIGHT
-        if self.rect.left < self.width/2 :
-            self.rect.left = self.width/2
-        if self.rect.right > WIDTH - self.width/2:
-            self.rect.right = WIDTH - self.width/2
-
-        self.mask = pygame.mask.from_surface(self.image) #jet mask
 
 class LeftWall(pygame.sprite.Sprite):
     def __init__(self,):
@@ -98,8 +87,8 @@ class Bullet(pygame.sprite.Sprite):
         self.image_name = BULLET
         self.width = 20
         self.height = 20
-        self.speed_x = ( (aim_x - pos_x)/WIDTH * 12 )
-        self.speed_y = ( (aim_y - pos_y)/HEIGHT * 12 )
+        self.speed_x = ( (aim_x - pos_x)/ 30 )
+        self.speed_y = ( (aim_y - pos_y)/ 30 )
         # 이동 속도
         self.acc_x = 0
         self.acc_y = 0

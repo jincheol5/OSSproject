@@ -21,16 +21,18 @@ BACKGROUND = 'background.png'
 POINTER_1 = 'pointer_1.png'
 POINTER_2 = 'pointer_2.png'
 
-#shooting
+
 SPACE = 'space.jpg'
 SPACESHIP = 'spaceship.png'
 BULLET = 'bullet.png'
 JET = 'jet.png'
 JET_2 = 'jet_2.png'
 METEOR = 'meteor.png'
-
-#cannon
 CANNON = 'cannon.png'
+MONSTER = 'monster.png'
+FOOD = 'food.png'
+UFO = 'ufo.png'
+TRASH = 'trash.png'
 
 #Sound
 BUTTON_1 = 'button_1.wav'
@@ -40,6 +42,10 @@ EXPLODE = 'explode.wav'
 HAPPY = 'happy.mp3'
 INTRO = 'intro.wav'
 MAIN = 'main.wav'
+CANNON_BGM = 'cannon_bgm.mp3'
+CANNON_BGM_2 = 'cannon_bgm2.mp3'
+FIRE_SOUND = 'fire.mp3'
+SNAKE_BGM = 'snake_bgm.mp3'
 
 #define colors
 WHITE = (255, 255, 255)

@@ -1,4 +1,3 @@
-import os
 import pygame
 import time
 
@@ -6,6 +5,8 @@ from settings import *
 from sprites import *
 from shooting_sprites import *
 from pause import *
+from startpage import *
+from board import *
 
 class Shooting:
     def __init__(self):
@@ -16,22 +17,27 @@ class Shooting:
 
         #마우스 포인터
         pygame.mouse.set_visible(False)
-        self.mousePointer = MousePointer()
-        self.pointer = pygame.sprite.Group()
-        self.pointer.add(self.mousePointer)
 
         #텍스트
         self.text_score = Text(WIDTH/2, 50, "SCORE : ", 30, WHITE, MOVIE)
         self.text_group = pygame.sprite.Group()
         self.text_group.add(self.text_score)
 
+        #시작화면 텍스트
+        self.text_name = "SHOOTING"
+        self.text_explain = "운석을 피해 적 군함을 터트리세요"
+        self.text_score_explain = "적 군함을 터트리면 점수 + 1000"
+        self.text_key = "상하좌우 방향키로 움직이세요!"
+        self.text_exit = "운석과 충돌하면 GAME OVER"
+
         #이미지
         self.backGround = Image(WIDTH, HEIGHT, WIDTH/2, HEIGHT/2, SPACE)
         self.image_group = pygame.sprite.Group()
         self.image_group.add(self.backGround)
 
-    def new(self):
+    def new(self,ID):
         # start page
+        self.ID = ID
         self.playTime = 0
         self.score = 0
         self.meteorSpeed = 3
@@ -49,8 +55,10 @@ class Shooting:
 
         #sound
         self.sound_explode = Sound(EXPLODE).sound
-        self.BGM = Sound(HAPPY).sound
-        self.BGM.set_volume(0.5)
+        self.sound_fire = Sound(FIRE_SOUND).sound
+        self.BGM = Sound(CANNON_BGM_2).sound
+        self.BGM.set_volume(0.3)
+        self.sound_fire.set_volume(0.1)
         # BGM 시작
         self.BGM.play(-1)
         # run
@@ -60,8 +68,11 @@ class Shooting:
         return self.returnNum
 
     def run(self):
-        # page loop
         self.playing = True
+        startpage = Startpage(self.text_name, self.text_explain, self.text_score_explain, self.text_key, self.text_exit)
+        self.playing, self.returnNum = startpage.new()
+        del(startpage)
+        # page loop
         while self.playing:
             self.clock.tick(FPS)
             self.events()
@@ -113,15 +124,15 @@ class Shooting:
         if self.playTime%10 == 0 :
             self.score += 1
 
-        #1분마다 메테오 속도 증가
-        if(self.playTime%3600 == 0):
+        #30초마다 메테오 속도 증가
+        if(self.playTime%1800 == 0):
             self.meteorSpeed += 3
         # 메테오 추가
         if(self.playTime % 60 == 0):
             self.meteor = Meteor(self.meteorSpeed)
             self.meteor_group.add(self.meteor)
         # 총알 추가
-        if(self.playTime % 10 == 0):
+        if(self.playTime % 15 == 0):
             self.bullet = Bullet(self.player.rect.center[0], self.player.rect.top)
             self.bullet_group.add(self.bullet)
 
@@ -139,13 +150,16 @@ class Shooting:
         self.collide_eb = pygame.sprite.spritecollide(self.enemy, self.bullet_group, True, pygame.sprite.collide_mask)
         if self.collide_eb:
             self.enemy.hit_count += 1
+            self.sound_fire.play()
 
         # 게임 오버 (player와 meteor 충돌)
         self.gameover = pygame.sprite.spritecollide(self.player, self.meteor_group, False, pygame.sprite.collide_mask)
         if self.gameover:
             self.playing = False
-            self.returnNum = 3
-            time.sleep(0.5)
+            time.sleep(1.0)
+            self.board = Board(1, self.ID, self.score)
+            self.returnNum = self.board.new()
+            del(self.board)
 
         # 스프라이트 업데이트
         self.player_group.update() 
@@ -154,7 +168,6 @@ class Shooting:
         self.enemy_group.update()
 
         #업데이트
-        self.pointer.update()
         self.text_score.text_update(self.text_score.baseText + str(self.score))
 
     def draw(self):
@@ -167,7 +180,6 @@ class Shooting:
         self.player_group.draw(self.screen)
 
         self.text_group.draw(self.screen)
-        self.pointer.draw(self.screen)
         
         pygame.display.flip()
 

@@ -9,6 +9,7 @@ from gamelist import *
 from shooting import *
 from cannon import *
 from rhythm import *
+from snake import *
 
 
 def main():
@@ -20,49 +21,54 @@ def main():
     SCORE = {1:0, 2:0, 3:0, 4:0}
     running = 1
     BGM = Sound(HAPPY).sound
+    BGM.set_volume(0.3)
     BGM.play()
 
     while running:
         #시작화면
         if running == 1:
-            s = Start()
-            running = s.new()
-            del(s)
+            start = Start()
+            running = start.new()
+            del(start)
         #로그인
         elif running == 2:
-            l = Login()
-            (running,ID) = l.new()
+            login = Login()
+            (running,ID) = login.new()
             print(ID)
-            del(l)
+            del(login)
         #게임 리스트
         elif running == 3:
-            gl = GameList()
-            running = gl.new()
-            del(gl)
+            gamelist = GameList()
+            running = gamelist.new()
+            del(gamelist)
         #게임1
         elif running == 4:
             BGM.stop()
             game = Shooting()
-            running = game.new()
+            running = game.new(ID)
             del(game)
             BGM.play()
         #게임2
         elif running == 5: 
             BGM.stop()
             game = Cannon()
-            running = game.new()
+            running = game.new(ID)
             del(game)
             BGM.play()
         #게임3
         elif running == 6:  
             BGM.stop()
             game = Rhythm()
-            running = game.new()
+            running = game.new(ID)
             del(game)
             BGM.play()
         #게임4
         elif running == 7:  
-            pass
+            BGM.stop()
+            game = Snake()
+            running = game.new(ID)
+            del(game)
+            BGM.play()
 
     pygame.quit()
     sys.exit()

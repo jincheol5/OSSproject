@@ -5,6 +5,8 @@ from settings import *
 from sprites import *
 from rhythm_sprites import *
 from pause import *
+from startpage import *
+from board import *
 
 class Rhythm:
     def __init__(self):
@@ -15,9 +17,6 @@ class Rhythm:
 
         #마우스 포인터
         pygame.mouse.set_visible(False)
-        self.mousePointer = MousePointer()
-        self.pointer = pygame.sprite.Group()
-        self.pointer.add(self.mousePointer)
 
         #텍스트
         self.text_score = Text(WIDTH/2, 50, "SCORE : ", 30, WHITE, MOVIE)
@@ -26,13 +25,21 @@ class Rhythm:
         self.text_group.add(self.text_score)
         self.text_group.add(self.text_life)
 
+        #시작화면 텍스트
+        self.text_name = "RHYTHM"
+        self.text_explain = "타이밍에 맞춰 쓰레기를 치워주세요"
+        self.text_score_explain = "쓰레기를 처리하면 점수 + 10"
+        self.text_key = " A S D  J K L 를 타이밍에 맞춰 입력하세요"
+        self.text_exit = "LIFE가 0이 되면 GAME OVER"
+
         #이미지
         self.backGround = Image(WIDTH, HEIGHT, WIDTH/2, HEIGHT/2, SPACE)
         self.image_group = pygame.sprite.Group()
         self.image_group.add(self.backGround)
 
-    def new(self):
+    def new(self,ID):
         # start page
+        self.ID = ID
         self.playTime = 0
         self.score = 0
         self.life = 20
@@ -48,20 +55,23 @@ class Rhythm:
         #sound
         self.button_sound = Sound(BUTTON_1).sound
         self.button_sound.set_volume(0.1)
-        self.BGM = Sound(HAPPY).sound
+        self.BGM = Sound(CANNON_BGM_2).sound
         self.BGM.set_volume(0.5)
         self.BGM_BPM = 180 / 60
         # BGM 시작
-        #self.BGM.play(-1)
+        self.BGM.play(-1)
         # run
         self.run()
         # BGM 종료
-        #self.BGM.stop()
+        self.BGM.stop()
         return self.returnNum
 
     def run(self):
-        # page loop
         self.playing = True
+        startpage = Startpage(self.text_name, self.text_explain, self.text_score_explain, self.text_key, self.text_exit)
+        self.playing, self.returnNum = startpage.new()
+        del(startpage)
+        # page loop
         while self.playing:
             self.clock.tick(FPS)
             self.events()
@@ -121,7 +131,7 @@ class Rhythm:
         # 메테오 추가
         if(self.playTime <300):
             pass
-        elif( self.playTime % 15  == 0):
+        elif( self.playTime % 20  == 0):
             self.meteor = Meteor()
             self.meteor_group.add(self.meteor)
 
@@ -133,14 +143,15 @@ class Rhythm:
         # 게임 오버 (life == 0)
         if self.life == 0:
             self.playing = False
-            self.returnNum = 3
-            time.sleep(0.5)
+            time.sleep(1.0)
+            self.board = Board(3, self.ID, self.score)
+            self.returnNum = self.board.new()
+            del(self.board)
 
         # 스프라이트 업데이트
         self.meteor_group.update()
 
         #업데이트
-        self.pointer.update()
         self.text_score.text_update(self.text_score.baseText + str(self.score))
         self.text_life.text_update(self.text_life.baseText + str(self.life))
 
@@ -152,7 +163,6 @@ class Rhythm:
         self.meteor_group.draw(self.screen)
 
         self.text_group.draw(self.screen)
-        self.pointer.draw(self.screen)
         
         pygame.display.flip()
 
