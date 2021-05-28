@@ -1,7 +1,6 @@
 import pygame
 import os
 import random
-import time
 
 from settings import *
 from sprites import *
