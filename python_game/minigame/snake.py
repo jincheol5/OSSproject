@@ -14,25 +14,20 @@ class Snake:
         self.clock = pygame.time.Clock()
         self.running = True #창 실행 Boolean 값
         self.returnNum = 3 # 리턴값
-
         #마우스 포인터
         pygame.mouse.set_visible(False)
-       
-
         #텍스트
         self.text_score = Text(WIDTH/2, 50, "SCORE : ", 30, WHITE, MOVIE)
         self.text_eat = Text(WIDTH/2, 100, "EAT : ", 20, BLUE, MOVIE)
         self.text_group = pygame.sprite.Group()
         self.text_group.add(self.text_score)
         self.text_group.add(self.text_eat)
-
         #시작화면 텍스트
         self.text_name = "SNAKE"
         self.text_explain = "먹이를 먹고 몬스터를 키워주세요"
         self.text_score_explain = "먹이를 먹으면 점수 + 100"
         self.text_key = "상하좌우 방향키로 움직이세요"
         self.text_exit = "UFO나 장애물에 부딛히면 GAME OVER"
-
         #이미지
         self.backGround = Image(WIDTH, HEIGHT, WIDTH/2, HEIGHT/2, SPACE)
         self.image_group = pygame.sprite.Group()
@@ -58,12 +53,12 @@ class Snake:
         self.meteor = Meteor() # meteor 선언
         self.obstacle_1 = Obstacle()
         self.obstacle_2 = Obstacle()
+        self.obstacle_3 = Obstacle()
         self.meteor_group.add(self.meteor)
         self.player_group.add(self.player)
         self.obstacle_group.add(self.obstacle_1)
         self.obstacle_group.add(self.obstacle_2)
-
-
+        self.obstacle_group.add(self.obstacle_3)
         #sound
         self.sound_eat = Sound(EAT).sound
         self.BGM = Sound(SNAKE_BGM).sound
@@ -122,23 +117,18 @@ class Snake:
                     self.player.speed_y += self.player.acc_y
                 if event.key == pygame.K_DOWN:
                     self.player.speed_y -= self.player.acc_y
-                
 
     def update(self):
         # 플레이 시간 증가
         self.playTime += 1
         if (self.enemy_appear):
             self.enemy_time += 1
-
-
         # enemy 등장 (10 개 먹을 때 마다)
         if(self.count_eat %11 == 0 and self.count_eat!=0) :
             self.enemy = Enemy() # Enemy 선언
             self.enemy_group.add(self.enemy)
             self.enemy_appear = True
             self.count_eat += 1
-
-
         # 사이즈 업 (player와 meteor 충돌)
         self.eat = pygame.sprite.spritecollide(self.player, self.meteor_group, True, pygame.sprite.collide_mask)
         if self.eat:
@@ -170,13 +160,11 @@ class Snake:
 
     def draw(self):
         self.screen.fill(BLACK)
-
         # 오브젝트
         self.meteor_group.draw(self.screen)
         self.enemy_group.draw(self.screen)
         self.player_group.draw(self.screen)
         self.obstacle_group.draw(self.screen)
-
         self.text_group.draw(self.screen)
         
         pygame.display.flip()

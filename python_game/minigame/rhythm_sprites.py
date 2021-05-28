@@ -10,10 +10,10 @@ class Meteor(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.image_name = TRASH
-        self.width = WIDTH/6
-        self.height = HEIGHT/6
+        self.width = WIDTH/8
+        self.height = HEIGHT/8
         self.speed_x = 0
-        self.speed_y = 12
+        self.speed_y = 6
         # 이동 속도
         self.acc_x = 0
         self.acc_y = 0

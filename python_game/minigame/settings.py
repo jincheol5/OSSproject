@@ -1,6 +1,3 @@
-import pygame
-
-
 #base properties
 TITLE = "MINI GAME"
 WIDTH = 552
@@ -20,7 +17,8 @@ MOVIE = "font_movie.ttf"
 BACKGROUND = 'background.png'
 POINTER_1 = 'pointer_1.png'
 POINTER_2 = 'pointer_2.png'
-
+BUTTON_BACK = 'button_back.png'
+BUTTON_EXIT = 'button_exit.png'
 
 SPACE = 'space.jpg'
 SPACESHIP = 'spaceship.png'
@@ -34,6 +32,13 @@ FOOD = 'food.png'
 UFO = 'ufo.png'
 TRASH = 'trash.png'
 PLANE = 'plane.png'
+CROSSHAIR = 'crosshair.png'
+
+SHOOTING_GAME = 'shooting_play.jpg'
+CANNON_GAME = 'cannon_play.jpg'
+RHYTHM_GAME = 'rhythm_play.jpg'
+SNAKE_GAME = 'snake_play.jpg'
+
 
 #Sound
 BUTTON_1 = 'button_1.wav'

@@ -10,13 +10,11 @@ class Startpage:
         self.running = True #창 실행 Boolean 값
         self.return_playing = True # 리턴값
         self.returnNum = 3
-
         #마우스 포인터
         pygame.mouse.set_visible(False)
         self.mousePointer = MousePointer()
         self.pointer = pygame.sprite.Group()
         self.pointer.add(self.mousePointer)
-
         #텍스트
         self.text1 = Text(WIDTH/2,100, name, 40, WHITE, MOVIE)
         self.text2 = Text(WIDTH/2,200, explain, 20, WHITE, MOVIE)
@@ -31,10 +29,12 @@ class Startpage:
         self.text_group.add(self.text4)
         self.text_group.add(self.text5)
         self.text_group.add(self.startButtonText)
-
         #이미지
         self.image_group = pygame.sprite.Group()
-
+        self.image_exit = Image(30, 30, WIDTH-50, 50, BUTTON_EXIT)
+        self.image_group.add(self.image_exit)
+        self.image_back = Image(30, 30, 50, 50, BUTTON_BACK)
+        self.image_group.add(self.image_back)
         #버튼
         self.startButton = Button(WIDTH/2, HEIGHT/8, WIDTH/2, HEIGHT*4/5, LIGHTGRAY)
         self.exitButton = Button(50, 50, WIDTH-50, 50, LIGHTGRAY)
@@ -46,7 +46,6 @@ class Startpage:
 
     def new(self):
         # start page
-
         self.run()
 
         return self.return_playing, self.returnNum
@@ -85,24 +84,16 @@ class Startpage:
                     self.playing = False
                     self.return_playing = False
                     self.returnNum = 3
-                #mouse = pygame.mouse.get_pos()
-                #if self.button.pressed(mouse):   #Button's pressed method is called
-                #   print ('button hit')
 
     def update(self):
-        # if 종료조건 달성 시
-        #self.playing = False
-
         #업데이트
         self.pointer.update()
         self.button_group.update()
 
-        pass
-
     def draw(self):
         self.screen.fill(BLACK)
-        self.image_group.draw(self.screen)
         self.button_group.draw(self.screen)
+        self.image_group.draw(self.screen)
         self.text_group.draw(self.screen)
         self.pointer.draw(self.screen)
         

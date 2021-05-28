@@ -30,6 +30,16 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y
 
+class Crosshair(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image_dir = os.path.join(image_dir, CROSSHAIR)
+        self.image = pygame.image.load(self.image_dir)
+        self.image = pygame.transform.scale(self.image,(POINTER_SIZE,POINTER_SIZE))
+        self.rect = self.image.get_rect()
+        self.rect.center = pygame.mouse.get_pos()
+    def update(self):
+        self.rect.center = pygame.mouse.get_pos()
 
 class LeftWall(pygame.sprite.Sprite):
     def __init__(self,):
