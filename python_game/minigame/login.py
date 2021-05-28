@@ -1,4 +1,3 @@
-import os
 import pygame
 
 from settings import *
@@ -20,7 +19,7 @@ class Login:
 
         #텍스트
         self.text = Text(WIDTH/2,100, "로그인", 40, BLACK, MOVIE)
-        self.text2 = Text(WIDTH/2,250, "ENTER YOUR ID:", 30, BLACK, MOVIE)
+        self.text2 = Text(WIDTH/2,250, "Enter ID in ENGLISH:", 30, BLACK, MOVIE)
         self.text_ID = Text(WIDTH/2,HEIGHT/2, self.ID , 40, RED, MOVIE)
         self.text_loginButton = Text(WIDTH/2, HEIGHT*4/5, "L O G I N", 40, BLACK, MOVIE)
         self.text_group = pygame.sprite.Group()
@@ -30,8 +29,11 @@ class Login:
         self.text_group.add(self.text_loginButton)
 
         #이미지
-        
         self.image_group = pygame.sprite.Group()
+        self.image_exit = Image(30, 30, WIDTH-50, 50, BUTTON_EXIT)
+        self.image_group.add(self.image_exit)
+        self.image_back = Image(30, 30, 50, 50, BUTTON_BACK)
+        self.image_group.add(self.image_back)
 
         #버튼
         self.startButton = Button(WIDTH/2, HEIGHT/8, WIDTH/2, HEIGHT*4/5, LIGHTGRAY)
@@ -45,7 +47,6 @@ class Login:
     def new(self):
         # start page
         self.ID = ''
-
         self.run()
 
         return (self.returnNum, self.ID)
@@ -69,7 +70,9 @@ class Login:
             #입력
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    pass
+                    if(len(self.ID) > 0):
+                        self.playing = False
+                        self.returnNum = 3
                 elif event.key == pygame.K_BACKSPACE:
                     self.ID = self.ID[:-1]
                 else :
@@ -92,23 +95,17 @@ class Login:
                 elif( self.goBackButton.button_clicked() ):
                     self.playing = False
                     self.returnNum = 1
-          
-                
-
+                    
     def update(self):
-        # if 종료조건 달성 시
-        #self.playing = False
-
         #업데이트
         self.pointer.update()
         self.button_group.update()
         self.text_ID.text_update(self.ID)
-        pass
 
     def draw(self):
         self.screen.fill(WHITE)
-        self.image_group.draw(self.screen)
         self.button_group.draw(self.screen)
+        self.image_group.draw(self.screen)
         self.text_group.draw(self.screen)
         self.pointer.draw(self.screen)
         

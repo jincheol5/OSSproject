@@ -42,7 +42,7 @@ class Rhythm:
         self.ID = ID
         self.playTime = 0
         self.score = 0
-        self.life = 20
+        self.life = 10
         # object
         self.bottom = Bottom() # 바닥
         self.meteor_group = pygame.sprite.Group() # 운석 그룹
@@ -53,8 +53,6 @@ class Rhythm:
             self.player_button_group.add(self.player_button[self.i])
 
         #sound
-        self.button_sound = Sound(BUTTON_1).sound
-        self.button_sound.set_volume(0.1)
         self.BGM = Sound(CANNON_BGM_2).sound
         self.BGM.set_volume(0.5)
         self.BGM_BPM = 180 / 60
@@ -157,11 +155,9 @@ class Rhythm:
 
     def draw(self):
         self.screen.fill(BLACK)
-
         # 오브젝트
         self.player_button_group.draw(self.screen)
         self.meteor_group.draw(self.screen)
-
         self.text_group.draw(self.screen)
         
         pygame.display.flip()
@@ -171,4 +167,3 @@ class Rhythm:
         self.hitted = pygame.sprite.spritecollide(self.player_button[index], self.meteor_group, True, pygame.sprite.collide_mask)
         if (self.hitted):
             self.score += 10
-            self.button_sound.play()

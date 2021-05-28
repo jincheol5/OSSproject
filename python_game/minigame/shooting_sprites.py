@@ -101,14 +101,11 @@ class Enemy(pygame.sprite.Sprite):
     def update(self):
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y
-
         #객체가 이동 가능 구역을 넘어 갔을 시
         if self.rect.left <= 0 :
             self.speed_x = - self.speed_x
         if self.rect.right >= WIDTH:
             self.speed_x = - self.speed_x
-
-        
 
         self.mask = pygame.mask.from_surface(self.image) #meteor mask
 
@@ -137,7 +134,6 @@ class Bullet(pygame.sprite.Sprite):
     def update(self):
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y
-
         #객체가 이동 가능 구역을 넘어 갔을 시
         if self.rect.bottom < 0:
             self.kill()

@@ -18,7 +18,6 @@ def main():
     pygame.display.set_caption(TITLE)   
 
     ID = ''
-    SCORE = {1:0, 2:0, 3:0, 4:0}
     running = 1
     BGM = Sound(HAPPY).sound
     BGM.set_volume(0.3)
@@ -74,5 +73,3 @@ def main():
     sys.exit()
 
 if __name__ == '__main__': main()
-
-    
