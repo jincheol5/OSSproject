@@ -9,6 +9,7 @@ from sprites import *
 class Meteor(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
+        self.image_name = TRASH
         self.width = WIDTH/6
         self.height = HEIGHT/6
         self.speed_x = 0
@@ -20,9 +21,11 @@ class Meteor(pygame.sprite.Sprite):
         self.pos_x = random.randrange(1,7) * WIDTH/6 - self.width/2
         self.pos_y = - self.height/2
         # 이미지 초기화
-        self.image = pygame.Surface([self.width, self.height])
-        self.image.fill(WHITE)
+        self.image_dir = os.path.join(image_dir, self.image_name)
+        self.image = pygame.image.load(self.image_dir)
         self.image = pygame.transform.scale(self.image,(round(self.width), round(self.height))) #이미지 사이즈 변경
+        self.rect = self.image.get_rect()
+        self.rect.center = [self.pos_x, self.pos_y] 
         # 위치 초기화
         self.rect = self.image.get_rect()
         self.rect.center = [self.pos_x, self.pos_y] 
