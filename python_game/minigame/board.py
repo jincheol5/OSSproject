@@ -87,6 +87,13 @@ class Board:
         #텍스트
         self.text = Text(WIDTH/2+1,51, "RANKING", 40, WHITE, MOVIE)
         self.text2 = Text(WIDTH/2,50, "RANKING", 40, RED, MOVIE)
+
+        #이미지
+        self.image_group = pygame.sprite.Group()
+        self.image_exit = Image(30, 30, WIDTH-50, 50, BUTTON_EXIT)
+        self.image_group.add(self.image_exit)
+        self.image_back = Image(30, 30, 50, 50, BUTTON_BACK)
+        self.image_group.add(self.image_back)
         
         #순위 아이디 점수 
         self.q1 = Text(WIDTH/10*2,150, "순위", 30, RED, MOVIE)
@@ -199,6 +206,7 @@ class Board:
         self.screen.fill(BLACK)
         
         self.button_group.draw(self.screen)
+        self.image_group.draw(self.screen)
         self.text_group.draw(self.screen)
         self.pointer.draw(self.screen)
         

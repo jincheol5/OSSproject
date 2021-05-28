@@ -1,4 +1,3 @@
-import os
 import pygame
 import time
 
@@ -20,7 +19,7 @@ class Cannon:
 
         #마우스 포인터
         pygame.mouse.set_visible(False)
-        self.mousePointer = MousePointer()
+        self.mousePointer = Crosshair()
         self.pointer = pygame.sprite.Group()
         self.pointer.add(self.mousePointer)
 
@@ -51,11 +50,10 @@ class Cannon:
         self.player_group = pygame.sprite.Group() # 플레이어
         self.meteor_group = pygame.sprite.Group() # 운석 그룹
         self.bullet_group = pygame.sprite.Group() # 총알 그룹
- 
+
         self.leftwall = LeftWall() # 왼벽
         self.player = Player() # Player 선언
-
-        self.player_group.add(self.player)\
+        self.player_group.add(self.player)
 
         #sound
         self.sound_explosion = Sound(EXPLODE).sound
@@ -115,11 +113,9 @@ class Cannon:
     def update(self):
         # 플레이 시간 증가
         self.playTime += 1
-
         # 30초마다 메테오 속도 증가
         if self.playTime % 1800 == 0 :
             self.meteorSpeed -= 1
-
         # 메테오 추가
         if(self.playTime % 60 == 0):
             self.meteor = Meteor(self.meteorSpeed)

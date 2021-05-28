@@ -113,17 +113,12 @@ class Shooting:
                     self.player.speed_y += self.player.acc_y
                 if event.key == pygame.K_DOWN:
                     self.player.speed_y -= self.player.acc_y
-                
-                #mouse = pygame.mouse.get_pos()
-                #if self.button.pressed(mouse):   #Button's pressed method is called
-                #   print ('button hit')
 
     def update(self):
         # 플레이 시간 증가
         self.playTime += 1
         if self.playTime%10 == 0 :
             self.score += 1
-
         #30초마다 메테오 속도 증가
         if(self.playTime%1800 == 0):
             self.meteorSpeed += 3
@@ -135,14 +130,11 @@ class Shooting:
         if(self.playTime % 15 == 0):
             self.bullet = Bullet(self.player.rect.center[0], self.player.rect.top)
             self.bullet_group.add(self.bullet)
-
         # enemy 파괴 (n번 이상 hit 시)
         if self.enemy.hit_count >= self.enemy.explode_count:
             self.enemy.kill()
             self. score += 1000
-
             self.sound_explode.play()
-
             self.enemy = Enemy() 
             self.enemy_group.add(self.enemy)
 
@@ -172,13 +164,11 @@ class Shooting:
 
     def draw(self):
         self.screen.fill(BLACK)
-
         # 오브젝트
         self.meteor_group.draw(self.screen)
         self.enemy_group.draw(self.screen)
         self.bullet_group.draw(self.screen)
         self.player_group.draw(self.screen)
-
         self.text_group.draw(self.screen)
         
         pygame.display.flip()
