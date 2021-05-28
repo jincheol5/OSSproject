@@ -12,8 +12,13 @@ def create_app():
   app.database=database
   
   #점수들을 내림차순으로 보여주는 함수 
-  def showscore():
-    sql="SELECT name,score FROM board_1 ORDER BY score DESC limit 10;"
+  def showscore(re_gamecode):
+    if re_gamecode==1: sql="SELECT name,score FROM board_1 ORDER BY score DESC limit 10;"
+    elif re_gamecode==2: sql="SELECT name,score FROM board_2 ORDER BY score DESC limit 10;"
+    elif re_gamecode==3: sql="SELECT name,score FROM board_3 ORDER BY score DESC limit 10;"
+    else: sql="SELECT name,score FROM board_4 ORDER BY score DESC limit 10;"
+
+
     result=app.database.execute(sql)
     row=result.fetchall()
     row=str(row).strip('[]') 
@@ -28,11 +33,20 @@ def create_app():
     #post 는 form 형태로 data 받는다 
     re_name=request.form['name']
     re_score=request.form['score']
-    sql="insert into board_1 value(NULL,'%s',%d);"%(re_name,int(re_score))
+    re_gamecode=request.form['gamecode'] #게임 구별 변수 
+    if re_gamecode==1: sql="insert into board_1 value(NULL,'%s',%d);"%(re_name,int(re_score))
+    elif re_gamecode==2: sql="insert into board_2 value(NULL,'%s',%d);"%(re_name,int(re_score))
+    elif re_gamecode==3: sql="insert into board_3 value(NULL,'%s',%d);"%(re_name,int(re_score))
+    else: sql="insert into board_4 value(NULL,'%s',%d);"%(re_name,int(re_score))
+    
+    
+    
+    
+    
     app.database.execute(sql)
     
     
-    return showscore()
+    return showscore(re_gamecode)
 
   
   

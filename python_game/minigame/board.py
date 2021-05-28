@@ -39,7 +39,8 @@ class Board:
         datas={
           
           'name':ID,
-          'score':SCORE
+          'score':SCORE,
+          'gamecode':NUMBER #게임 구별 변수 
           
         }
 
