@@ -65,6 +65,7 @@ class Snake:
 
 
         #sound
+        self.sound_eat = Sound(EAT).sound
         self.BGM = Sound(SNAKE_BGM).sound
         self.BGM.set_volume(0.5)
         # BGM 시작
@@ -147,6 +148,7 @@ class Snake:
             self.count += 1
             self.meteor = Meteor()
             self.meteor_group.add(self.meteor)
+            self.sound_eat.play()
 
         # 게임 오버
         self.gameOver = pygame.sprite.spritecollide(self.player, self.enemy_group, False, pygame.sprite.collide_mask)
