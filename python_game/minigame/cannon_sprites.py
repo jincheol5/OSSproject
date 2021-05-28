@@ -51,9 +51,9 @@ class LeftWall(pygame.sprite.Sprite):
 class Meteor(pygame.sprite.Sprite):
     def __init__(self,meteorSpeed):
         super().__init__()
-        self.image_name = METEOR
-        self.width = 40
-        self.height = 40
+        self.image_name = PLANE
+        self.width = 80
+        self.height = 60
         self.speed_x = meteorSpeed
         self.speed_y = 0
         # 이동 속도

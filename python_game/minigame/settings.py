@@ -33,6 +33,7 @@ MONSTER = 'monster.png'
 FOOD = 'food.png'
 UFO = 'ufo.png'
 TRASH = 'trash.png'
+PLANE = 'plane.png'
 
 #Sound
 BUTTON_1 = 'button_1.wav'
@@ -46,6 +47,7 @@ CANNON_BGM = 'cannon_bgm.mp3'
 CANNON_BGM_2 = 'cannon_bgm2.mp3'
 FIRE_SOUND = 'fire.mp3'
 SNAKE_BGM = 'snake_bgm.mp3'
+EAT = 'eat.wav'
 
 #define colors
 WHITE = (255, 255, 255)
