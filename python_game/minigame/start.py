@@ -1,4 +1,3 @@
-import os
 import pygame
 
 from settings import *
@@ -57,10 +56,6 @@ class Start:
                     self.playing = False
                     self.returnNum = 0
             #입력
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_z:
-                    pass
-
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if( self.startButton.button_clicked() ):
                     self.playing = False

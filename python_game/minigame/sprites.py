@@ -3,10 +3,9 @@ import os
 
 from settings import *
 
-dir = os.path.dirname(__file__)
-image_dir = os.path.join(dir, 'image')
-font_dir = os.path.join(dir, 'font')
-sound_dir = os.path.join(dir, 'sound')
+image_dir = os.path.abspath('image')
+font_dir = os.path.abspath('font')
+sound_dir = os.path.abspath('sound')
 
 class Text(pygame.sprite.Sprite):
     def __init__(self, pos_x, pos_y, text, size, color, font_name):

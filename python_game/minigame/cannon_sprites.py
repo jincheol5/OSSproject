@@ -58,13 +58,13 @@ class LeftWall(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = [self.pos_x, self.pos_y]
 
-class Meteor(pygame.sprite.Sprite):
-    def __init__(self,meteorSpeed):
+class Plane(pygame.sprite.Sprite):
+    def __init__(self,planeSpeed):
         super().__init__()
         self.image_name = PLANE
         self.width = 80
         self.height = 60
-        self.speed_x = meteorSpeed
+        self.speed_x = planeSpeed
         self.speed_y = 0
         # 이동 속도
         self.acc_x = -1
@@ -88,7 +88,7 @@ class Meteor(pygame.sprite.Sprite):
         if self.rect.right < 0:
             self.kill()
 
-        self.mask = pygame.mask.from_surface(self.image) #meteor mask
+        self.mask = pygame.mask.from_surface(self.image) #plane mask
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, pos_x, pos_y, aim_x, aim_y):

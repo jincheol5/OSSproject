@@ -23,14 +23,14 @@ class GameList:
         self.textList = []
         self.textList.append(Text(WIDTH*1/4 + 32, HEIGHT*3/6-48, "SHOOTING", 30, WHITE, MOVIE))
         self.textList.append(Text(WIDTH*3/4 - 28, HEIGHT*3/6-48, "CANNON", 30, WHITE, MOVIE))
-        self.textList.append(Text(WIDTH*1/4 + 32, HEIGHT*5/6-48, "RHYTHM", 30, WHITE, MOVIE))
-        self.textList.append(Text(WIDTH*3/4 - 28, HEIGHT*5/6-48, "SNAKE", 30, WHITE, MOVIE))
+        self.textList.append(Text(WIDTH*1/4 + 32, HEIGHT*5/6-48, "TRASH", 30, WHITE, MOVIE))
+        self.textList.append(Text(WIDTH*3/4 - 28, HEIGHT*5/6-48, "MONSTER", 30, WHITE, MOVIE))
         for self.i in range(0,4) :
             self.text_group.add(self.textList[self.i])
         self.textList.append(Text(WIDTH*1/4 + 30, HEIGHT*3/6-50, "SHOOTING", 30, RED, MOVIE))
         self.textList.append(Text(WIDTH*3/4 - 30, HEIGHT*3/6-50, "CANNON", 30, RED, MOVIE))
-        self.textList.append(Text(WIDTH*1/4 + 30, HEIGHT*5/6-50, "RHYTHM", 30, RED, MOVIE))
-        self.textList.append(Text(WIDTH*3/4 - 30, HEIGHT*5/6-50, "SNAKE", 30, RED, MOVIE))
+        self.textList.append(Text(WIDTH*1/4 + 30, HEIGHT*5/6-50, "TRASH", 30, RED, MOVIE))
+        self.textList.append(Text(WIDTH*3/4 - 30, HEIGHT*5/6-50, "MONSTER", 30, RED, MOVIE))
         for self.i in range(4,8) :
             self.text_group.add(self.textList[self.i])
         
