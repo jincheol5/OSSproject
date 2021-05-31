@@ -45,10 +45,10 @@ class Cannon:
         self.ID = ID
         self.playTime = 0
         self.score = 0
-        self.meteorSpeed = -1
+        self.planeSpeed = -1
 
         self.player_group = pygame.sprite.Group() # 플레이어
-        self.meteor_group = pygame.sprite.Group() # 운석 그룹
+        self.plane_group = pygame.sprite.Group() # 운석 그룹
         self.bullet_group = pygame.sprite.Group() # 총알 그룹
 
         self.leftwall = LeftWall() # 왼벽
@@ -97,12 +97,6 @@ class Cannon:
                     self.p = Pause()
                     self.playing, self.returnNum = self.p.new()
                     del(self.p)
-
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_a:
-                    self.player.speed_x += self.player.acc_x
-                if event.key == pygame.K_d:
-                    self.player.speed_x -= self.player.acc_x
             
             if event.type == MOUSEBUTTONDOWN:
                 mouse = pygame.mouse.get_pos()
@@ -113,24 +107,24 @@ class Cannon:
     def update(self):
         # 플레이 시간 증가
         self.playTime += 1
-        # 30초마다 메테오 속도 증가
+        # 30초마다 비행기 속도 증가
         if self.playTime % 1800 == 0 :
-            self.meteorSpeed -= 1
-        # 메테오 추가
+            self.planeSpeed -= 1
+        # 비행기 추가
         if(self.playTime % 60 == 0):
-            self.meteor = Meteor(self.meteorSpeed)
-            self.meteor_group.add(self.meteor)
+            self.plane = Plane(self.planeSpeed)
+            self.plane_group.add(self.plane)
         
 
 
-        # meteor와 bullet 충돌
-        self.collide_eb = pygame.sprite.groupcollide(self.bullet_group, self.meteor_group, True, True, pygame.sprite.collide_mask)
+        # plane와 bullet 충돌
+        self.collide_eb = pygame.sprite.groupcollide(self.bullet_group, self.plane_group, True, True, pygame.sprite.collide_mask)
         if self.collide_eb:
             self.score += 20
             self.sound_explosion.play()
 
-        # 게임 오버 (meteor 가 왼벽에 닿음)
-        self.gameover = pygame.sprite.spritecollide(self.leftwall, self.meteor_group, False, pygame.sprite.collide_mask)
+        # 게임 오버 (plane 가 왼벽에 닿음)
+        self.gameover = pygame.sprite.spritecollide(self.leftwall, self.plane_group, False, pygame.sprite.collide_mask)
         if self.gameover:
             self.playing = False
             time.sleep(1.0)
@@ -140,7 +134,7 @@ class Cannon:
 
         # 스프라이트 업데이트
         self.player_group.update() 
-        self.meteor_group.update()
+        self.plane_group.update()
         self.bullet_group.update()
 
         #업데이트
@@ -151,7 +145,7 @@ class Cannon:
         self.screen.fill(BLACK)
 
         # 오브젝트
-        self.meteor_group.draw(self.screen)
+        self.plane_group.draw(self.screen)
         self.bullet_group.draw(self.screen)
         self.player_group.draw(self.screen)
 

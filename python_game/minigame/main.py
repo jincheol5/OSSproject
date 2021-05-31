@@ -8,8 +8,8 @@ from gamelist import *
 
 from shooting import *
 from cannon import *
-from rhythm import *
-from snake import *
+from trash import *
+from monster import *
 
 
 def main():
@@ -57,14 +57,14 @@ def main():
         #게임3
         elif running == 6:  
             BGM.stop()
-            game = Rhythm()
+            game = Trash()
             running = game.new(ID)
             del(game)
             BGM.play()
         #게임4
         elif running == 7:  
             BGM.stop()
-            game = Snake()
+            game = Monster()
             running = game.new(ID)
             del(game)
             BGM.play()
